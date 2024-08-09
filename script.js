@@ -71,13 +71,17 @@ const gameBoard = (function() {
 })()
 
 const gameFlow = (function() {
+    let turn;
+    createPlayers()
+
     function createPlayers() {
         // This is temporary until frontend is designed
         ply1 = Player("cross", "X")
         ply2 = Player("circle", "O")
+        turn = ply1
     }
-
-    let turn = ply1;
+    
+    
 
     function placeItem(x, y) {
         if (gameBoard.addToBoard(x, y, turn.playerSign)) {
