@@ -80,9 +80,9 @@ const gameFlow = (function() {
 })()
 
 const Player = function(name, sign) {
-    let name;
-    let sign;
+    let playerName = name;
+    let playerSign = sign;
     let score = 0;
 
-    return { name, sign, score }
+    return { playerName, playerSign, score }
 }
