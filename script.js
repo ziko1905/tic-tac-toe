@@ -49,5 +49,11 @@ const gameBoard = (function() {
         return false
     }
 
-    return { board, addToBoard, checkCols, checkRows, checkDigs }
+    function checkWinner() {
+        for (let winner of [checkCols(), checkRows(), checkDigs()]) {
+            if (winner) return winner
+        }
+    }
+
+    return { addToBoard, checkWinner }
 })()
