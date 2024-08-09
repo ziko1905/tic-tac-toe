@@ -70,9 +70,19 @@ const gameBoard = (function() {
     return { addToBoard, resetBoard, checkWinner }
 })()
 
-const Player = function() {
+const gameFlow = (function() {
+    function createPlayers() {
+        ply1 = Player()
+        ply2 = Player()
+    }
+
+    return { createPlayers }
+})()
+
+const Player = function(name, sign) {
     let name;
     let sign;
+    let score = 0;
 
-    return { name, sign}
+    return { name, sign, score }
 }
