@@ -72,8 +72,9 @@ const gameBoard = (function() {
 
 const gameFlow = (function() {
     function createPlayers() {
-        ply1 = Player()
-        ply2 = Player()
+        // This is temporary until frontend is designed
+        ply1 = Player("cross", "X")
+        ply2 = Player("circle", "O")
     }
 
     return { createPlayers }
