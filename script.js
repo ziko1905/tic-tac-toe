@@ -90,8 +90,8 @@ const gameFlow = (function() {
         // This is temporary until frontend is designed
         ply1 = Player("cross", "X")
         ply2 = Player("circle", "O")
-        turn = ply1
-        nextTurn = ply1
+        turn = ply1;
+        nextTurn = ply2;
     }
     
     function placeItem(x, y) {
