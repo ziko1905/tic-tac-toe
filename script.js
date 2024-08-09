@@ -37,5 +37,17 @@ const gameBoard = (function() {
         return false
     }
 
-    return { board, addToBoard, checkCols, checkRows }
+    function checkDigs() {
+        digsLoop:
+        for (let n of [[0, 1, 2], [2, 1, 0]]) {
+            if (!board[0][n[0]]) continue digsLoop
+            for (let m = 1; m < 3; m++) {    
+                if (board[m][n[m]] != board[m-1][n[m-1]]) continue digsLoop   
+            }
+            return board[2][n[2]]
+        }
+        return false
+    }
+
+    return { board, addToBoard, checkCols, checkRows, checkDigs }
 })()
