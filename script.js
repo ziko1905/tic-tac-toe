@@ -70,3 +70,9 @@ const gameBoard = (function() {
     return { addToBoard, resetBoard, checkWinner }
 })()
 
+const Player = function() {
+    let name;
+    let sign;
+
+    return { name, sign}
+}
