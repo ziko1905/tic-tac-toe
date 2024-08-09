@@ -64,11 +64,18 @@ const gameBoard = (function() {
         for (let winner of [checkCols(), checkRows(), checkDigs()]) {
             if (winner) return winner
         }
-        if (!spaceLeft) return false
+        if (!spaceLeft) return true
+        return false
     }
 
-    return { addToBoard, resetBoard, checkWinner }
+    return { addToBoard, resetBoard, checkWinner, board }
 })()
+
+const Player = function(name, sign) {
+    let score = 0;
+
+    return { name, sign, score }
+}
 
 const gameFlow = (function() {
     let turn;
@@ -81,30 +88,21 @@ const gameFlow = (function() {
         turn = ply1
     }
     
-    
-
     function placeItem(x, y) {
-        if (gameBoard.addToBoard(x, y, turn.playerSign)) {
+        if (gameBoard.addToBoard(x, y, turn.sign)) {
             if (gameBoard.checkWinner()) {
-                gameBoard.resetBoard()
-                if (gameBoard.checkWinner()[1]) {
+                if (gameBoard.checkWinner() === turn.sign) {
                     ++turn.score
-                    console.log(`${turn.playerName} won, congrats!`)
+                    console.log(`${turn.name} won, congrats!`)
                 } else console.log("Its a Tie!")
-
-                if (turn == ply1) turn = ply2
-                else turn = ply1
+                gameBoard.resetBoard()
             }
+            if (turn == ply1) turn = ply2
+            else turn = ply1
+            
         }
     }
 
     return { placeItem }
 })()
 
-const Player = function(name, sign) {
-    let playerName = name;
-    let playerSign = sign;
-    let score = 0;
-
-    return { playerName, playerSign, score }
-}
