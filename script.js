@@ -8,7 +8,9 @@ const gameBoard = (function() {
     }
 
     function addToBoard(y, x, sign) {
-        board[y][x] = sign
+        if (!board[y][x]) board[y][x] = sign
+        else return false
+        return true
     }
 
     return { board, addToBoard }
