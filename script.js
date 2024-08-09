@@ -1,13 +1,8 @@
 const gameBoard = (function() {
-    let board = [];
-    let spaceLeft = 9;
-    for (let n = 0; n < 3; n++) {
-        board.push([])
-        for (let m = 0; m < 3; m++) {
-            board[n].push(null)
-        } 
-    }
-
+    let board;
+    let spaceLeft;
+    resetBoard()
+    
     function addToBoard(y, x, sign) {
         if (!board[y][x]) {
             board[y][x] = sign
@@ -15,6 +10,18 @@ const gameBoard = (function() {
         }
         else return false
         return true
+    }
+
+    function resetBoard() {
+        board = [];
+        for (let n = 0; n < 3; n++) {
+            board.push([]);
+            for (let m = 0; m < 3; m++) {
+                board[n].push(null);
+            } 
+        }
+
+        spaceLeft = 9;
     }
 
     function checkCols() {
@@ -60,6 +67,6 @@ const gameBoard = (function() {
         if (!spaceLeft) return false
     }
 
-    return { addToBoard, checkWinner }
+    return { addToBoard, resetBoard, checkWinner }
 })()
 
