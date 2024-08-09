@@ -77,7 +77,24 @@ const gameFlow = (function() {
         ply2 = Player("circle", "O")
     }
 
-    return { createPlayers }
+    let turn = ply1;
+
+    function placeItem(x, y) {
+        if (gameBoard.addToBoard(x, y, turn.playerSign)) {
+            if (gameBoard.checkWinner()) {
+                gameBoard.resetBoard()
+                if (gameBoard.checkWinner()[1]) {
+                    ++turn.score
+                    console.log(`${turn.playerName} won, congrats!`)
+                } else console.log("Its a Tie!")
+
+                if (turn == ply1) turn = ply2
+                else turn = ply1
+            }
+        }
+    }
+
+    return { placeItem }
 })()
 
 const Player = function(name, sign) {
