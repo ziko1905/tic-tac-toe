@@ -1,27 +1,31 @@
 const gameBoard = (function() {
-    let board;
-    let spaceLeft;
-    resetBoard()
+    let board = [];
+    for (let n = 0; n < 3; n++) {
+        board.push([]);
+        for (let m = 0; m < 3; m++) {
+            board[n].push(null);
+        } 
+    }
+
+    let spaceLeft = [9];
     
     function addToBoard(y, x, sign) {
         if (!board[y][x]) {
             board[y][x] = sign
-            spaceLeft -= 1;
+            spaceLeft[0] = spaceLeft[0] - 1;
         }
         else return false
         return true
     }
 
     function resetBoard() {
-        board = [];
         for (let n = 0; n < 3; n++) {
-            board.push([]);
             for (let m = 0; m < 3; m++) {
-                board[n].push(null);
+                board[n][m] = null;
             } 
         }
 
-        spaceLeft = 9;
+        while (spaceLeft[0] < 9) spaceLeft[0] = spaceLeft[0] + 1;
     }
 
     function checkCols() {
@@ -64,11 +68,11 @@ const gameBoard = (function() {
         for (let winner of [checkCols(), checkRows(), checkDigs()]) {
             if (winner) return winner
         }
-        if (!spaceLeft) return true
+        if (!spaceLeft[0]) return true
         return false
     }
 
-    return { addToBoard, resetBoard, checkWinner, board }
+    return { addToBoard, resetBoard, checkWinner, board, spaceLeft }
 })()
 
 const Player = function(name, sign) {
@@ -79,6 +83,7 @@ const Player = function(name, sign) {
 
 const gameFlow = (function() {
     let turn;
+    let nextTurn;
     createPlayers()
 
     function createPlayers() {
@@ -86,6 +91,7 @@ const gameFlow = (function() {
         ply1 = Player("cross", "X")
         ply2 = Player("circle", "O")
         turn = ply1
+        nextTurn = ply1
     }
     
     function placeItem(x, y) {
@@ -96,10 +102,13 @@ const gameFlow = (function() {
                     console.log(`${turn.name} won, congrats!`)
                 } else console.log("Its a Tie!")
                 gameBoard.resetBoard()
+                turn = nextTurn;
+                nextTurn = nextTurn == ply2 ? ply1 : ply2;
             }
-            if (turn == ply1) turn = ply2
-            else turn = ply1
-            
+            else {
+                if (turn == ply1) turn = ply2
+                else turn = ply1
+            }
         }
     }
 
