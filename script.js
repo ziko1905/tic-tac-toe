@@ -7,5 +7,9 @@ const gameBoard = (function() {
         } 
     }
 
-    return { board }
+    function addToBoard(y, x, sign) {
+        board[y][x] = sign
+    }
+
+    return { board, addToBoard }
 })()
