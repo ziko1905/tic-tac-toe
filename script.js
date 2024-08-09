@@ -25,5 +25,17 @@ const gameBoard = (function() {
         return false
     }
 
-    return { board, addToBoard, checkCols }
+    function checkRows() {
+        colsLoop:
+        for (let n = 0; n < 3; n++) {
+            if (board[0][n] === null) continue
+            for (let m = 1; m < 3; m++) {
+                if (board[m][n] != board[m-1][n]) continue colsLoop
+            }
+            return board[2][n]
+        }
+        return false
+    }
+
+    return { board, addToBoard, checkCols, checkRows }
 })()
