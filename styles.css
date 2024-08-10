@@ -29,7 +29,7 @@ h1 {
     font-size: 5rem;
     color: var(--secondary-color);
     grid-column: 1 / -1;
-    align-self: center;
+    justify-self: center;
 }
 
 .game {
