@@ -5,7 +5,7 @@ const gameBoard = (function() {
     function addToBoard(y, x, sign) {
         if (!board[y][x]) {
             board[y][x] = sign
-            spaceLeft[0] = spaceLeft[0] - 1;
+            spaceLeft -= spaceLeft;
         }
         else return false
         return true
