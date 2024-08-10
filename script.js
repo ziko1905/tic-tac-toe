@@ -117,14 +117,14 @@ const dispControler = (function() {
     function functionalizeItemDivs() {
         const divs = document.querySelectorAll(".item");
         for (div of divs) {
-            div.addEventListener("click", (e) => gameFlow.placeItem(Math.floor(e.target.id / 3), e.target.id % 3))
+            div.addEventListener("click", (e) => gameFlow.placeItem(Math.floor(e.target.id[2] / 3), e.target.id[2] % 3))
         }
     }
 
     function placeImage(x, y, sign) {
         const id = x * 3 + y; 
         const image = document.createElement("img");
-        const place = document.querySelector(`#${id}`)
+        const place = document.querySelector(`#id${id}`)
 
         if (sign == "X") image.setAttribute("src", "media/Cross-draw-image.png")
         else image.setAttribute("src", "media/circle.png")
