@@ -126,7 +126,7 @@ const dispControler = (function() {
         const image = document.createElement("img");
         const place = document.querySelector(`#id${id}`)
 
-        if (sign == "X") image.setAttribute("src", "media/Cross-draw-image.png")
+        if (sign == "X") image.setAttribute("src", "media/Cross-draw-image.svg.png")
         else image.setAttribute("src", "media/circle.png")
 
         place.appendChild(image)
