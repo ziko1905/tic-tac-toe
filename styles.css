@@ -37,6 +37,7 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 600px 1fr;
     grid-template-rows: 1fr 600px;
+    gap: 0px 40px;
 }
 
 .plate {
@@ -71,6 +72,16 @@ h1 {
     grid-template-rows: repeat(2, minmax(0, 1fr));
     grid-column: 3;
     grid-row: 2;
+    align-items: center;
+    gap: 30px;
+}
+
+.cross {
+    align-self: end;
+}
+
+.circle {
+    align-self: start;
 }
 
 .item img {
@@ -78,5 +89,13 @@ h1 {
 }
 
 .turn img {
-    height: 90%;
+    background-color: var(--secondary-color);
+    padding: 7px;
+    height: 60%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 3px;
+}
+
+.turn img:hover {
+    height: 75%;
 }
