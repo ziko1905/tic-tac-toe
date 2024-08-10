@@ -95,14 +95,24 @@ const gameFlow = (function() {
         if (gameBoard.addToBoard(x, y, turn.sign)) {
             dispControler.placeImage(x, y, turn.sign)
             if (gameBoard.checkWinner()) {
+                prepareBoard = function() {
+                    gameBoard.resetBoard()
+                    dispControler.resetBoardDisp()
+                    turn = nextTurn;
+                    nextTurn = nextTurn == ply2 ? ply1 : ply2;
+                }
                 if (gameBoard.checkWinner() === turn.sign) {
                     ++turn.score
-                    console.log(`${turn.name} won, congrats!`)
-                } else console.log("Its a Tie!")
-                gameBoard.resetBoard()
-                dispControler.resetBoardDisp()
-                turn = nextTurn;
-                nextTurn = nextTurn == ply2 ? ply1 : ply2;
+                    setTimeout(function () { 
+                        alert(`${turn.name} won, congrats!`)
+                        console.log("continue")
+                        prepareBoard()
+                    }, 1)
+                } else setTimeout(function () { 
+                    alert("Its a Tie!")
+                    prepareBoard()
+                }, 1)
+                
             }
             else {
                 if (turn == ply1) turn = ply2
