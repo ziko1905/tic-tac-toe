@@ -28,6 +28,7 @@ html {
 .item {
     display: flex;
     background-color: white;
+    padding: 3px;
 }
 
 img {
