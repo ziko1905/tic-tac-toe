@@ -11,8 +11,24 @@
 
 }
 
+:root {
+    --primary-color: rgb(133, 133, 133);
+    --secondary-color: rgb(255, 255, 255);
+}
+
 html {
     font-family: 'kaushan_scriptregular', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--primary-color);
+}
+
+.plate {
+    display: inline-block;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    box-shadow: 2px 2px 2px 2px;
 }
 
 .board {
@@ -27,8 +43,7 @@ html {
 
 .item {
     display: flex;
-    background-color: white;
-    padding: 3px;
+    background-color: var(--secondary-color);
 }
 
 img {
