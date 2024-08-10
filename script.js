@@ -93,6 +93,7 @@ const gameFlow = (function() {
     
     function placeItem(x, y) {
         if (gameBoard.addToBoard(x, y, turn.sign)) {
+            dispControler.placeImage(x, y, turn.sign)
             if (gameBoard.checkWinner()) {
                 if (gameBoard.checkWinner() === turn.sign) {
                     ++turn.score
@@ -120,6 +121,19 @@ const dispControler = (function() {
         }
     }
 
+    function placeImage(x, y, sign) {
+        const id = x * 3 + y; 
+        const image = document.createElement("img");
+        const place = document.querySelector(`#${id}`)
+
+        if (sign == "X") image.setAttribute("src", "media/Cross-draw-image.png")
+        else image.setAttribute("src", "media/circle.png")
+
+        place.appendChild(image)
+    }
+
     functionalizeItemDivs()
+
+    return { placeImage }
 })()
 
