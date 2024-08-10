@@ -100,6 +100,7 @@ const gameFlow = (function() {
                     console.log(`${turn.name} won, congrats!`)
                 } else console.log("Its a Tie!")
                 gameBoard.resetBoard()
+                dispControler.resetBoardDisp()
                 turn = nextTurn;
                 nextTurn = nextTurn == ply2 ? ply1 : ply2;
             }
@@ -114,8 +115,9 @@ const gameFlow = (function() {
 })()
 
 const dispControler = (function() {
+    const divs = document.querySelectorAll(".item");
+
     function functionalizeItemDivs() {
-        const divs = document.querySelectorAll(".item");
         for (div of divs) {
             div.addEventListener("click", (e) => gameFlow.placeItem(Math.floor(e.target.id[2] / 3), e.target.id[2] % 3))
         }
@@ -132,8 +134,14 @@ const dispControler = (function() {
         place.appendChild(image)
     }
 
+    function resetBoardDisp() {
+        for (div of divs) {
+            div.textContent = ""
+        }
+    }
+
     functionalizeItemDivs()
 
-    return { placeImage }
+    return { placeImage, resetBoardDisp }
 })()
 
