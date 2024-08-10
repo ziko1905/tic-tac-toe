@@ -26,5 +26,10 @@ html {
 }
 
 .item {
+    display: flex;
     background-color: white;
+}
+
+img {
+    flex: 1;
 }
