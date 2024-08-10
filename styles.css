@@ -14,3 +14,17 @@
 html {
     font-family: 'kaushan_scriptregular', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(3, 200px);
+    gap: 20px;
+
+    background-color: black;
+    width: fit-content;
+}
+
+.item {
+    background-color: white;
+}
