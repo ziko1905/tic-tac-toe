@@ -23,15 +23,6 @@ const gameBoard = (function() {
         spaceLeft = 9;
     }
 
-    function functionalizeItemDivs() {
-        const divs = document.querySelectorAll(".item");
-        for (div of divs) {
-            div.addEventListener("click", (e) => {
-                return null
-            })
-        }
-    }
-
     function checkCols() {
         rowsLoop:
         for (let n = 0; n < 3; n++) {
@@ -77,9 +68,8 @@ const gameBoard = (function() {
     }
 
     resetBoard()
-    functionalizeItemDivs()
 
-    return { addToBoard, resetBoard, checkWinner }
+    return { addToBoard, resetBoard, checkWinner, board }
 })()
 
 const Player = function(name, sign) {
@@ -120,5 +110,16 @@ const gameFlow = (function() {
     }
 
     return { placeItem }
+})()
+
+const dispControler = (function() {
+    function functionalizeItemDivs() {
+        const divs = document.querySelectorAll(".item");
+        for (div of divs) {
+            div.addEventListener("click", (e) => gameFlow.placeItem(Math.floor(e.target.id / 3), e.target.id % 3))
+        }
+    }
+
+    functionalizeItemDivs()
 })()
 
