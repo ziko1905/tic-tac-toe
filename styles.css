@@ -96,6 +96,6 @@ h1 {
     box-shadow: 0px 0px 10px 3px;
 }
 
-.turn-div img:hover {
+.turn-div img.turn {
     height: 75%;
 }

@@ -88,6 +88,7 @@ const gameFlow = (function() {
         ply1 = Player("cross", "X")
         ply2 = Player("circle", "O")
         turn = ply1;
+        // dispControler.changeTurn(turn.sign)
         nextTurn = ply2;
     }
     
@@ -118,7 +119,7 @@ const gameFlow = (function() {
                 if (turn == ply1) turn = ply2
                 else turn = ply1
             }
-            
+            dispControler.changeTurn(turn.sign)
         }
     }
 
@@ -155,8 +156,8 @@ const dispControler = (function() {
         const cross = document.querySelector("#cross");
         const circle = document.querySelector("#circle");
 
-        cross.setAttribute("class", turn == "X" ? "turn" : "" )
-        circle.setAttribute("class", turn == "O" ? "turn" : "")
+        cross.setAttribute("class", sign == "X" ? "turn" : "" )
+        circle.setAttribute("class", sign == "O" ? "turn" : "")
     }
 
     functionalizeItemDivs()
