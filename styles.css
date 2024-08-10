@@ -88,7 +88,7 @@ h1 {
     flex: 1;
 }
 
-.turn img {
+.turn-div img {
     background-color: var(--secondary-color);
     padding: 7px;
     height: 60%;
@@ -96,6 +96,6 @@ h1 {
     box-shadow: 0px 0px 10px 3px;
 }
 
-.turn img:hover {
+.turn-div img:hover {
     height: 75%;
 }
