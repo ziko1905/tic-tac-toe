@@ -1,7 +1,6 @@
 const gameBoard = (function() {
     let board;
     let spaceLeft;
-    resetBoard()
     
     function addToBoard(y, x, sign) {
         if (!board[y][x]) {
@@ -22,6 +21,15 @@ const gameBoard = (function() {
         }
 
         spaceLeft = 9;
+    }
+
+    function functionalizeItemDivs() {
+        const divs = document.querySelectorAll(".item");
+        for (div of divs) {
+            div.addEventListener("click", (e) => {
+                return null
+            })
+        }
     }
 
     function checkCols() {
@@ -67,6 +75,9 @@ const gameBoard = (function() {
         if (!spaceLeft) return true
         return false
     }
+
+    resetBoard()
+    functionalizeItemDivs()
 
     return { addToBoard, resetBoard, checkWinner }
 })()
