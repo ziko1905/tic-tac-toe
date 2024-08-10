@@ -30,6 +30,7 @@ h1 {
     color: var(--secondary-color);
     grid-column: 1 / -1;
     justify-self: center;
+    margin-bottom: 40px;
 }
 
 .game {
@@ -60,6 +61,7 @@ h1 {
 .item {
     display: flex;
     background-color: var(--secondary-color);
+    padding: 4px;
 }
 
 img {
