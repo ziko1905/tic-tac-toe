@@ -96,10 +96,10 @@ const gameFlow = (function() {
             dispControler.placeImage(x, y, turn.sign)
             if (gameBoard.checkWinner()) {
                 prepareBoard = function() {
-                    gameBoard.resetBoard()
-                    dispControler.resetBoardDisp()
                     turn = nextTurn;
                     nextTurn = nextTurn == ply2 ? ply1 : ply2;
+                    gameBoard.resetBoard()
+                    dispControler.resetBoardDisp()
                 }
                 if (gameBoard.checkWinner() === turn.sign) {
                     ++turn.score
@@ -118,6 +118,7 @@ const gameFlow = (function() {
                 if (turn == ply1) turn = ply2
                 else turn = ply1
             }
+            
         }
     }
 
@@ -150,8 +151,16 @@ const dispControler = (function() {
         }
     }
 
+    function changeTurn(sign) {
+        const cross = document.querySelector("#cross");
+        const circle = document.querySelector("#circle");
+
+        cross.setAttribute("class", turn == "X" ? "turn" : "" )
+        circle.setAttribute("class", turn == "O" ? "turn" : "")
+    }
+
     functionalizeItemDivs()
 
-    return { placeImage, resetBoardDisp }
+    return { placeImage, resetBoardDisp, changeTurn }
 })()
 
