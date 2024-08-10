@@ -72,60 +72,6 @@ const gameBoard = (function() {
     return { addToBoard, resetBoard, checkWinner, board }
 })()
 
-const Player = function(name, sign) {
-    let score = 0;
-
-    return { name, sign, score }
-}
-
-const gameFlow = (function() {
-    let turn;
-    let nextTurn;
-    createPlayers()
-
-    function createPlayers() {
-        // This is temporary until frontend is designed
-        ply1 = Player("cross", "X")
-        ply2 = Player("circle", "O")
-        turn = ply1;
-        // dispControler.changeTurn(turn.sign)
-        nextTurn = ply2;
-    }
-    
-    function placeItem(x, y) {
-        if (gameBoard.addToBoard(x, y, turn.sign)) {
-            dispControler.placeImage(x, y, turn.sign)
-            if (gameBoard.checkWinner()) {
-                prepareBoard = function() {
-                    turn = nextTurn;
-                    nextTurn = nextTurn == ply2 ? ply1 : ply2;
-                    gameBoard.resetBoard()
-                    dispControler.resetBoardDisp()
-                }
-                if (gameBoard.checkWinner() === turn.sign) {
-                    ++turn.score
-                    setTimeout(function () { 
-                        alert(`${turn.name} won, congrats!`)
-                        console.log("continue")
-                        prepareBoard()
-                    }, 1)
-                } else setTimeout(function () { 
-                    alert("Its a Tie!")
-                    prepareBoard()
-                }, 1)
-                
-            }
-            else {
-                if (turn == ply1) turn = ply2
-                else turn = ply1
-            }
-            dispControler.changeTurn(turn.sign)
-        }
-    }
-
-    return { placeItem }
-})()
-
 const dispControler = (function() {
     const divs = document.querySelectorAll(".item");
 
@@ -164,4 +110,58 @@ const dispControler = (function() {
 
     return { placeImage, resetBoardDisp, changeTurn }
 })()
+
+const Player = function(name, sign) {
+    let score = 0;
+
+    return { name, sign, score }
+}
+
+const gameFlow = (function() {
+    let turn;
+    let nextTurn;
+    createPlayers()
+
+    function createPlayers() {
+        // This is temporary until frontend is designed
+        ply1 = Player("cross", "X")
+        ply2 = Player("circle", "O")
+        turn = ply1;
+        dispControler.changeTurn(turn.sign)
+        nextTurn = ply2;
+    }
+    
+    function placeItem(x, y) {
+        if (gameBoard.addToBoard(x, y, turn.sign)) {
+            dispControler.placeImage(x, y, turn.sign)
+            if (gameBoard.checkWinner()) {
+                prepareBoard = function() {
+                    gameBoard.resetBoard()
+                    dispControler.resetBoardDisp()
+                }
+                if (gameBoard.checkWinner() === turn.sign) {
+                    ++turn.score
+                    setTimeout(function () { 
+                        alert(`${turn.name} won, congrats!`)
+                        console.log("continue")
+                        prepareBoard()
+                    }, 1)
+                } else setTimeout(function () { 
+                    alert("Its a Tie!")
+                    prepareBoard()
+                }, 1)
+                turn = nextTurn;
+                nextTurn = nextTurn == ply2 ? ply1 : ply2;    
+            }
+            else {
+                if (turn == ply1) turn = ply2
+                else turn = ply1
+            }
+            dispControler.changeTurn(turn.sign)
+        }
+    }
+
+    return { placeItem }
+})()
+
 
