@@ -129,9 +129,17 @@ const dispControler = (function() {
         circle.setAttribute("class", sign == "O" ? "turn" : "")
     }
 
+    function changeScore(winner) {
+        const val1 = document.querySelector("#ply1-val");
+        const val2 = document.querySelector("#ply2-val");
+
+        if (winner.sign == "X") val1.textContent = winner.score;
+        else val2.textContent = winner.score;
+    }
+
     functionalizeItemDivs()
 
-    return { placeImage, resetBoardDisp, changeTurn }
+    return { placeImage, resetBoardDisp, changeTurn, changeScore }
 })()
 
 const Player = function(name, sign) {
@@ -164,6 +172,7 @@ const gameFlow = (function() {
                 }
                 if (gameBoard.checkWinner() === turn.sign) {
                     ++turn.score
+                    dispControler.changeScore(turn)
                     setTimeout(function () { 
                         alert(`${turn.name} won, congrats!`)
                         console.log("continue")
