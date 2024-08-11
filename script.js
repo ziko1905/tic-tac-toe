@@ -115,6 +115,7 @@ const dispControler = (function() {
         const cross = document.querySelector("#cross");
         const circle = document.querySelector("#circle");
 
+        console.log(cross)
         cross.setAttribute("class", sign == "X" ? "turn" : "" )
         circle.setAttribute("class", sign == "O" ? "turn" : "")
     }
