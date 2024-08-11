@@ -137,9 +137,21 @@ const dispControler = (function() {
         else val2.textContent = winner.score;
     }
 
+    function alertScore(text) {
+        const div = document.createElement("div");
+        const btn = document.createElement("button");
+
+        div.setAttribute("class", "alert")
+        div.textContent = text;
+        btn.textContent = "Ok"
+        div.appendChild(btn);
+        document.querySelector(".game").appendChild(div)
+
+    }
+
     functionalizeItemDivs()
 
-    return { placeImage, resetBoardDisp, changeTurn, changeScore }
+    return { placeImage, resetBoardDisp, changeTurn, changeScore, alertScore }
 })()
 
 const Player = function(name, sign) {
@@ -174,12 +186,11 @@ const gameFlow = (function() {
                     ++turn.score
                     dispControler.changeScore(turn)
                     setTimeout(function () { 
-                        alert(`${turn.name} won, congrats!`)
-                        console.log("continue")
+                        dispControler.alertScore(`${turn.name} won, congrats!`)
                         prepareBoard()
                     }, 1)
                 } else setTimeout(function () { 
-                    alert("Its a Tie!")
+                    dispControler.alertScore("Its a Tie!")
                     prepareBoard()
                 }, 1)
                 turn = nextTurn;
