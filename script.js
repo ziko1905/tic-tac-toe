@@ -181,20 +181,15 @@ const gameFlow = (function() {
             dispControler.placeImage(x, y, turn.sign)
             if (gameBoard.checkWinner()) {
                 prepareBoard = function() {
-                    gameBoard.resetBoard()
-                    dispControler.resetBoardDisp()
+                    
                 }
                 if (gameBoard.checkWinner() === turn.sign) {
                     ++turn.score
                     dispControler.changeScore(turn)
-                    setTimeout(function () { 
-                        dispControler.alertScore(`${turn.name} won, congrats!`)
-                        prepareBoard()
-                    }, 1)
-                } else setTimeout(function () { 
-                    dispControler.alertScore("Its a Tie!")
-                    prepareBoard()
-                }, 1)
+                    dispControler.alertScore(`${turn.name} won, congrats!`)
+                } else dispControler.alertScore("Its a Tie!")
+                gameBoard.resetBoard()
+                dispControler.resetBoardDisp()
                 turn = nextTurn;
                 nextTurn = nextTurn == ply2 ? ply1 : ply2;    
             }
