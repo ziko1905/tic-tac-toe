@@ -84,6 +84,7 @@ const dispControler = (function() {
             e.preventDefault();
             const formData = new FormData(form);
             gameFlow.createPlayers(formData.get("ply1-name"), formData.get("ply2-name"))
+            prompt.remove()
         })
     }
 
