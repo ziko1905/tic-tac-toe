@@ -74,6 +74,18 @@ const gameBoard = (function() {
 
 const dispControler = (function() {
     const divs = document.querySelectorAll(".item");
+    managePrompt()
+
+    function managePrompt() {
+        const form = document.querySelector("form")
+        const prompt = document.querySelector(".prompt")
+        
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            gameFlow.createPlayers(formData.get("ply1-name"), formData.get("ply2-name"))
+        })
+    }
 
     function functionalizeItemDivs() {
         for (div of divs) {
@@ -120,15 +132,15 @@ const Player = function(name, sign) {
 const gameFlow = (function() {
     let turn;
     let nextTurn;
-    createPlayers()
 
-    function createPlayers(name1="Cross", name2="Circle") {
+    function createPlayers(name1, name2) {
         // This is temporary until frontend is designed
-        ply1 = Player(name1, "X")
-        ply2 = Player(name2, "O")
+        ply1 = Player(name1 ? name1 : "Cross", "X")
+        ply2 = Player(name2 ? name2 : "Circle", "O")
         turn = ply1;
         dispControler.changeTurn(turn.sign)
         nextTurn = ply2;
+        console.log(ply1.name, ply2.name)
     }
     
     function placeItem(x, y) {
@@ -161,7 +173,7 @@ const gameFlow = (function() {
         }
     }
 
-    return { placeItem }
+    return { placeItem, createPlayers }
 })()
 
 
