@@ -90,6 +90,27 @@ h1 {
     margin-bottom: 40px;
 }
 
+.score {
+    display: grid;
+    grid-template-rows: repeat(2, minmax(100px, 200px));
+    width: 400px;
+}
+
+.score h2 {
+    font-size: 2.5rem;
+}
+
+.score > div {
+    background-color: var(--secondary-color);
+
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: minmax(0, 1fr);
+}
+
+.score img {
+    height: 70%;
+}
 .game {
     display: grid;
     grid-template-columns: 1fr 600px 1fr;
