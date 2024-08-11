@@ -84,8 +84,17 @@ const dispControler = (function() {
             e.preventDefault();
             const formData = new FormData(form);
             gameFlow.createPlayers(formData.get("ply1-name"), formData.get("ply2-name"))
+            insertNames(formData.get("ply1-name"), formData.get("ply2-name"))
             prompt.remove()
         })
+    }
+
+    function insertNames(val1, val2) {
+        const name1 = document.querySelector(".name1")
+        const name2 = document.querySelector(".name2")
+
+        name1.textContent = val1 ? `${val1}: ` : "Cross: ";
+        name2.textContent = val2 ? `${val2}: ` : "Circle: ";
     }
 
     function functionalizeItemDivs() {
