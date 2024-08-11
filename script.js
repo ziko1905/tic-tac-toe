@@ -122,10 +122,10 @@ const gameFlow = (function() {
     let nextTurn;
     createPlayers()
 
-    function createPlayers() {
+    function createPlayers(name1="Cross", name2="Circle") {
         // This is temporary until frontend is designed
-        ply1 = Player("cross", "X")
-        ply2 = Player("circle", "O")
+        ply1 = Player(name1, "X")
+        ply2 = Player(name2, "O")
         turn = ply1;
         dispControler.changeTurn(turn.sign)
         nextTurn = ply2;
