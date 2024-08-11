@@ -146,6 +146,8 @@ const dispControler = (function() {
         btn.textContent = "Ok"
         div.appendChild(btn);
         document.querySelector(".game").appendChild(div)
+        
+        btn.addEventListener("click", () => div.remove())
 
     }
 
