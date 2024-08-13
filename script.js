@@ -1,4 +1,4 @@
-const gameBoard = (function() {
+const GameBoard = (function() {
     let board;
     let spaceLeft;
     
@@ -177,18 +177,18 @@ const gameFlow = (function() {
     }
     
     function placeItem(x, y) {
-        if (gameBoard.addToBoard(x, y, turn.sign)) {
+        if (GameBoard.addToBoard(x, y, turn.sign)) {
             DispControler.placeImage(x, y, turn.sign)
-            if (gameBoard.checkWinner()) {
+            if (GameBoard.checkWinner()) {
                 prepareBoard = function() {
                     
                 }
-                if (gameBoard.checkWinner() === turn.sign) {
+                if (GameBoard.checkWinner() === turn.sign) {
                     ++turn.score
                     DispControler.changeScore(turn)
                     DispControler.alertScore(`${turn.name} won, congrats!`)
                 } else DispControler.alertScore("Its a Tie!")
-                gameBoard.resetBoard()
+                GameBoard.resetBoard()
                 DispControler.resetBoardDisp()
                 turn = nextTurn;
                 nextTurn = nextTurn == ply2 ? ply1 : ply2;    
