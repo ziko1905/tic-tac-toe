@@ -137,6 +137,7 @@ h1 {
 }
 
 .score img {
+    position: relative;
     height: 70%;
 }
 
