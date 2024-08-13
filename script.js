@@ -83,7 +83,7 @@ const DispControler = (function() {
         form.addEventListener("submit", (e) => {
             e.preventDefault();
             const formData = new FormData(form);
-            gameFlow.createPlayers(formData.get("ply1-name"), formData.get("ply2-name"))
+            GameFlow.createPlayers(formData.get("ply1-name"), formData.get("ply2-name"))
             insertNames(formData.get("ply1-name"), formData.get("ply2-name"))
             prompt.remove()
         })
@@ -99,7 +99,7 @@ const DispControler = (function() {
 
     function functionalizeItemDivs() {
         for (div of divs) {
-            div.addEventListener("click", (e) => gameFlow.placeItem(Math.floor(e.target.id[2] / 3), e.target.id[2] % 3))
+            div.addEventListener("click", (e) => GameFlow.placeItem(Math.floor(e.target.id[2] / 3), e.target.id[2] % 3))
         }
     }
 
@@ -162,7 +162,7 @@ const Player = function(name, sign) {
     return { name, sign, score }
 }
 
-const gameFlow = (function() {
+const GameFlow = (function() {
     let turn;
     let nextTurn;
 
