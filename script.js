@@ -1,9 +1,10 @@
 const GameBoard = (function() {
     let board;
     let spaceLeft;
+    let stop = false;
     
     function addToBoard(y, x, sign) {
-        if (!board[y][x]) {
+        if (!board[y][x] && !stop) {
             board[y][x] = sign
             spaceLeft -= 1;
         }
@@ -21,6 +22,11 @@ const GameBoard = (function() {
         }
 
         spaceLeft = 9;
+        stop = false;
+    }
+
+    function freezeBoard() {
+        stop = true;
     }
 
     function checkCols() {
@@ -69,7 +75,7 @@ const GameBoard = (function() {
 
     resetBoard()
 
-    return { addToBoard, resetBoard, checkWinner, board }
+    return { addToBoard, resetBoard, checkWinner, freezeBoard }
 })()
 
 const DispControler = (function() {
@@ -147,7 +153,13 @@ const DispControler = (function() {
         div.appendChild(btn);
         document.querySelector(".game").appendChild(div)
         
-        btn.addEventListener("click", () => div.remove())
+        GameBoard.freezeBoard()
+        btn.addEventListener("click", () => {
+            div.remove()
+            GameBoard.resetBoard()
+            DispControler.resetBoardDisp()
+            }
+    )
 
     }
 
@@ -188,8 +200,6 @@ const GameFlow = (function() {
                     DispControler.changeScore(turn)
                     DispControler.alertScore(`${turn.name} won, congrats!`)
                 } else DispControler.alertScore("Its a Tie!")
-                GameBoard.resetBoard()
-                DispControler.resetBoardDisp()
                 turn = nextTurn;
                 nextTurn = nextTurn == ply2 ? ply1 : ply2;    
             }
