@@ -72,7 +72,7 @@ const gameBoard = (function() {
     return { addToBoard, resetBoard, checkWinner, board }
 })()
 
-const dispControler = (function() {
+const DispControler = (function() {
     const divs = document.querySelectorAll(".item");
     managePrompt()
 
@@ -171,25 +171,25 @@ const gameFlow = (function() {
         ply1 = Player(name1 ? name1 : "Cross", "X")
         ply2 = Player(name2 ? name2 : "Circle", "O")
         turn = ply1;
-        dispControler.changeTurn(turn.sign)
+        DispControler.changeTurn(turn.sign)
         nextTurn = ply2;
         console.log(ply1.name, ply2.name)
     }
     
     function placeItem(x, y) {
         if (gameBoard.addToBoard(x, y, turn.sign)) {
-            dispControler.placeImage(x, y, turn.sign)
+            DispControler.placeImage(x, y, turn.sign)
             if (gameBoard.checkWinner()) {
                 prepareBoard = function() {
                     
                 }
                 if (gameBoard.checkWinner() === turn.sign) {
                     ++turn.score
-                    dispControler.changeScore(turn)
-                    dispControler.alertScore(`${turn.name} won, congrats!`)
-                } else dispControler.alertScore("Its a Tie!")
+                    DispControler.changeScore(turn)
+                    DispControler.alertScore(`${turn.name} won, congrats!`)
+                } else DispControler.alertScore("Its a Tie!")
                 gameBoard.resetBoard()
-                dispControler.resetBoardDisp()
+                DispControler.resetBoardDisp()
                 turn = nextTurn;
                 nextTurn = nextTurn == ply2 ? ply1 : ply2;    
             }
@@ -197,7 +197,7 @@ const gameFlow = (function() {
                 if (turn == ply1) turn = ply2
                 else turn = ply1
             }
-            dispControler.changeTurn(turn.sign)
+            DispControler.changeTurn(turn.sign)
         }
     }
 
